@@ -1,26 +1,10 @@
 package com.utk.config;
 
-import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
-import com.utk.service.HelloWorldMessageProvider;
-import com.utk.service.MessageProvider;
-import com.utk.service.MessageRenderer;
-import com.utk.service.StandardOutMessageRenderer;
-
 @Configuration
+@ComponentScan(basePackages = { "com.utk.service" })
 public class HelloWorldConfiguration {
-
-	@Bean
-	public MessageProvider provider() {
-		return new HelloWorldMessageProvider();
-	}
-
-	@Bean
-	public MessageRenderer renderer() {
-		MessageRenderer renderer = new StandardOutMessageRenderer();
-		renderer.setMessageProvider(provider());
-		return renderer;
-	}
 
 }

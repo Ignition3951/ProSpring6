@@ -8,7 +8,7 @@ import com.utk.model.Singer;
 @Configuration
 public class SingerConfig {
 
-	@Bean(initMethod = "init")
+	@Bean
 	Singer singerOne() {
 		Singer singer = new Singer();
 		singer.setName("SingerOne");
@@ -16,14 +16,14 @@ public class SingerConfig {
 		return singer;
 	}
 
-	@Bean(initMethod = "init")
+	@Bean
 	Singer singerTwo() {
 		Singer singer = new Singer();
 		singer.setAge(42);
 		return singer;
 	}
 
-	@Bean(initMethod = "init")
+	@Bean
 	Singer singerThree() {
 		Singer singer = new Singer();
 		return singer;

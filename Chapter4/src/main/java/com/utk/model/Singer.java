@@ -4,6 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.style.ToStringCreator;
 
+import jakarta.annotation.PostConstruct;
+
 public class Singer {
 
 	private static Logger logger = LoggerFactory.getLogger(Singer.class);
@@ -22,14 +24,15 @@ public class Singer {
 		this.age = age;
 	}
 
-	public void init() {
+	@PostConstruct
+	public void init() throws Exception {
 		logger.info("Initializing bean");
 		if (name == null) {
 			logger.info("Using default name");
 			name = DEFAULT_NAME;
 		}
 		if (age == 0) {
-			throw new IllegalArgumentException("You must set the age property of any bean name" + Singer.class);
+			throw new IllegalArgumentException("You must set the age property of any bean name : " + Singer.class);
 		}
 	}
 

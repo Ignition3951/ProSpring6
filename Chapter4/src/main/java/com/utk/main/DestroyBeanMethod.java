@@ -8,7 +8,7 @@ public class DestroyBeanMethod {
 
 	public static void main(String[] args) {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(DestroyBeanConfig.class);
-		context.close();
+		context.registerShutdownHook();// to register destroy method to be called from multiple exit points
 
 	}
 

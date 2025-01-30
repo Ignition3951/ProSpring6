@@ -2,7 +2,9 @@ package com.utk.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
+@Component
 public class StandardOutMessageRenderer implements MessageRenderer {
 
 	private static Logger logger = LoggerFactory.getLogger(StandardOutMessageRenderer.class);

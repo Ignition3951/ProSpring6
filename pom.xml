@@ -55,5 +55,6 @@
 	<modules>
 		<module>Chapter3</module>
 		<module>Chapter4</module>
+		<module>Chapter5</module>
 	</modules>
 </project>

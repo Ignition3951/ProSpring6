@@ -12,4 +12,8 @@ public interface Singer {
 	default void sing(String key) {
 		logger.info("Singing in the key of : {}", key);
 	}
+
+	default void rest() {
+		logger.info("This is the default method of Singer interface");
+	}
 }

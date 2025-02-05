@@ -2,9 +2,12 @@ package com.utk.service.impl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
+import com.utk.model.Guitar;
 import com.utk.service.Singer;
 
+@Component("johnMayer")
 public class GrammyGuitarist implements Singer {
 
 	private static Logger logger = LoggerFactory.getLogger(GrammyGuitarist.class);
@@ -26,6 +29,10 @@ public class GrammyGuitarist implements Singer {
 
 	public void talk() {
 		logger.info("talk");
+	}
+
+	public void sing(Guitar guitar) {
+		logger.info("Play : {}", guitar.play());
 	}
 
 }

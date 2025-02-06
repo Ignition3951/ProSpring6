@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.utk.dao.SingerDao;
 
@@ -19,14 +20,22 @@ public class JdbcSingerDao implements SingerDao, InitializingBean {
 
 	private DataSource dataSource;
 
+	private JdbcTemplate jdbcTemplate;
+
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
 	}
 
+	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
+	}
+
 	@Override
 	public void afterPropertiesSet() throws Exception {
-		if (dataSource == null)
-			throw new BeanCreationException("Must set datasource bean on SingerDao");
+//		if (dataSource == null)
+//			throw new BeanCreationException("Must set datasource bean on SingerDao");
+		if (jdbcTemplate == null)
+			throw new BeanCreationException("Must set jdbcTeamplate bean in singerdao");
 	}
 
 	@Override
@@ -44,6 +53,12 @@ public class JdbcSingerDao implements SingerDao, InitializingBean {
 			logger.debug("Problem when executin select query.", e);
 		}
 		return result;
+	}
+
+	@Override
+	public String findNameByIdByJdbcTemplate(Long id) {
+		return jdbcTemplate.queryForObject("select concat(first_name , ' ' , last_name) from singer where id=?",
+				String.class, id);
 	}
 
 }

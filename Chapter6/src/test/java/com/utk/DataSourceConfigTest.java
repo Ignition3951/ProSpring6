@@ -50,6 +50,6 @@ public class DataSourceConfigTest {
 
 	private void testSpringJdbc(AnnotationConfigApplicationContext context) {
 		JdbcSingerDao singerDao = context.getBean("singerDao", JdbcSingerDao.class);
-		assertEquals("John Mayer", singerDao.findNameById(1l));
+		assertEquals("John Mayer", singerDao.findNameByIdByJdbcTemplate(1l));
 	}
 }

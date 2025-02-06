@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 
 import com.mysql.cj.jdbc.Driver;
@@ -53,8 +54,15 @@ public class SimpleDataSourceConfig {
 	@Bean
 	public SingerDao singerDao() {
 		JdbcSingerDao singerDao = new JdbcSingerDao();
-		singerDao.setDataSource(dataSource());
+		singerDao.setJdbcTemplate(jdbcTemplate());
 		return singerDao;
+	}
+
+	@Bean
+	public JdbcTemplate jdbcTemplate() {
+		JdbcTemplate jdbcTemplate = new JdbcTemplate();
+		jdbcTemplate.setDataSource(dataSource());
+		return jdbcTemplate;
 	}
 
 }

@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.utk.config.SimpleDataSourceConfig;
+import com.utk.dao.impl.JdbcSingerDao;
 
 public class DataSourceConfigTest {
 
@@ -28,6 +29,7 @@ public class DataSourceConfigTest {
 		DataSource dataSource = context.getBean("dataSource", DataSource.class);
 		assertNotNull(dataSource);
 		testDataSource(dataSource);
+		testSpringJdbc(context);
 		context.close();
 
 	}
@@ -44,5 +46,10 @@ public class DataSourceConfigTest {
 		} catch (Exception e) {
 			logger.debug("Something unusual happened.", e);
 		}
+	}
+
+	private void testSpringJdbc(AnnotationConfigApplicationContext context) {
+		JdbcSingerDao singerDao = context.getBean("singerDao", JdbcSingerDao.class);
+		assertEquals("John Mayer", singerDao.findNameById(1l));
 	}
 }

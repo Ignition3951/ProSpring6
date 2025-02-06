@@ -12,6 +12,8 @@ import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 
 import com.mysql.cj.jdbc.Driver;
 //import org.springframework;
+import com.utk.dao.SingerDao;
+import com.utk.dao.impl.JdbcSingerDao;
 
 @Configuration
 @PropertySource("classpath:db/jdbc.properties")
@@ -46,6 +48,13 @@ public class SimpleDataSourceConfig {
 			logger.error("DBCP datasource could not be created!", e);
 			return null;
 		}
+	}
+
+	@Bean
+	public SingerDao singerDao() {
+		JdbcSingerDao singerDao = new JdbcSingerDao();
+		singerDao.setDataSource(dataSource());
+		return singerDao;
 	}
 
 }

@@ -51,4 +51,10 @@ public class Album extends AbstractEntity {
 		this.releaseDate = releaseDate;
 	}
 
+	@Override
+	public String toString() {
+		return "Album [title=" + title + ", releaseDate=" + releaseDate + "]";
+	}
+
+
 }

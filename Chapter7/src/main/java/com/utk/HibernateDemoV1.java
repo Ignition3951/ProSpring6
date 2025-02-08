@@ -15,8 +15,10 @@ public class HibernateDemoV1 {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(HibernateConfig.class);
 		SingerDao singerDao = context.getBean(SingerDao.class);
 
-		logger.info("-----Listing singers");
-		singerDao.findAll().forEach(s -> logger.info(s.toString()));
+//		logger.info("-----Listing singers with findAll");
+//		singerDao.findAll().forEach(s -> logger.info(s.toString()));
+		logger.info("-----Listing singers with findAllWithAlbum");
+		singerDao.findAllWithAlbum().forEach(s -> logger.info(s.toString()));
 		context.close();
 
 	}

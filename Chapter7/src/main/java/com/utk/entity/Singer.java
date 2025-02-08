@@ -11,11 +11,15 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "SINGER")
+@NamedQueries({
+		@NamedQuery(name = "Singer.findAllWithAlbum", query = "select distinct s from Singer s left join fetch s.albums a left join fetch s.instruments i") })
 public class Singer extends AbstractEntity {
 
 	/**
@@ -87,7 +91,13 @@ public class Singer extends AbstractEntity {
 
 	@Override
 	public String toString() {
-		return "Singer [fistName=" + fistName + ", lastName=" + lastName + ", birthDate=" + birthDate + "]";
+		return "Singer [fistName=" + fistName + ", lastName=" + lastName + ", birthDate=" + birthDate + ", albums="
+				+ albums + ", instruments=" + instruments + "]";
 	}
+
+//	@Override
+//	public String toString() {
+//		return "Singer [fistName=" + fistName + ", lastName=" + lastName + ", birthDate=" + birthDate + "]";
+//	}
 
 }

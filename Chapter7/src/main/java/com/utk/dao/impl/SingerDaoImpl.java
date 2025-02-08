@@ -29,8 +29,7 @@ public class SingerDaoImpl implements SingerDao {
 
 	@Override
 	public List<Singer> findAllWithAlbum() {
-		// TODO Auto-generated method stub
-		return null;
+		return sessionFactory.getCurrentSession().getNamedQuery("Singer.findAllWithAlbum").list();
 	}
 
 	@Override

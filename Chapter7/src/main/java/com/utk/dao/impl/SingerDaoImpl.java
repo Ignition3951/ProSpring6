@@ -34,8 +34,8 @@ public class SingerDaoImpl implements SingerDao {
 
 	@Override
 	public Singer findById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return (Singer) sessionFactory.getCurrentSession().getNamedQuery("Singer.findById").setParameter("id", id)
+				.uniqueResult();
 	}
 
 	@Override

@@ -19,6 +19,7 @@ public class HibernateDemoV1 {
 //		singerDao.findAll().forEach(s -> logger.info(s.toString()));
 		logger.info("-----Listing singers with findAllWithAlbum");
 		singerDao.findAllWithAlbum().forEach(s -> logger.info(s.toString()));
+		logger.info("----Listing findById using named Query : {}", singerDao.findById(1l));
 		context.close();
 
 	}

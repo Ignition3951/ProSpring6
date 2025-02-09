@@ -19,7 +19,8 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "SINGER")
 @NamedQueries({
-		@NamedQuery(name = "Singer.findAllWithAlbum", query = "select distinct s from Singer s left join fetch s.albums a left join fetch s.instruments i") })
+		@NamedQuery(name = "Singer.findAllWithAlbum", query = "select distinct s from Singer s left join fetch s.albums a left join fetch s.instruments i"),
+		@NamedQuery(name = "Singer.findById", query = "select distinct s from Singer s left join fetch s.albums a left join fetch s.instruments i where s.id=:id") })
 public class Singer extends AbstractEntity {
 
 	/**

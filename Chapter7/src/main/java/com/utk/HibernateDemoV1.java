@@ -6,7 +6,6 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import com.utk.config.HibernateConfig;
 import com.utk.dao.SingerDao;
-import com.utk.entity.Album;
 
 public class HibernateDemoV1 {
 
@@ -34,18 +33,20 @@ public class HibernateDemoV1 {
 //		album.setReleaseDate(LocalDate.of(1962, 3, 20));
 //		singer.addAlbum(album);
 //		singerDao.save(singer);
-		var singerUpdate = singerDao.findById(4l);
-		Album updateAlbum = singerUpdate.getAlbums().stream().filter(a -> a.getTitle().equals("My Kind of Blues"))
-				.findFirst().orElse(null);
-		logger.info("----Album fetched : {}", updateAlbum.toString());
-		singerUpdate.setFistName("BBUPdate");
-		singerUpdate.setLastName("KingUPdate");
-		singerUpdate.removeALbum(updateAlbum);
-		// int beforeUpdateversion = singerUpdate.getVersion();
-		// logger.info("VERSION BEFORE THE UPDATE IS : {}", beforeUpdateversion);
-		singerDao.save(singerUpdate);
-		int afterUpdateversion = singerUpdate.getVersion();
-		logger.info("VERSION AFTER THE UPDATE IS : {}", afterUpdateversion);
+//		var singerUpdate = singerDao.findById(4l);
+//		Album updateAlbum = singerUpdate.getAlbums().stream().filter(a -> a.getTitle().equals("My Kind of Blues"))
+//				.findFirst().orElse(null);
+//		logger.info("----Album fetched : {}", updateAlbum.toString());
+//		singerUpdate.setFistName("BBUPdate");
+//		singerUpdate.setLastName("KingUPdate");
+//		singerUpdate.removeALbum(updateAlbum);
+//		// int beforeUpdateversion = singerUpdate.getVersion();
+//		// logger.info("VERSION BEFORE THE UPDATE IS : {}", beforeUpdateversion);
+//		singerDao.save(singerUpdate);
+//		int afterUpdateversion = singerUpdate.getVersion();
+//		logger.info("VERSION AFTER THE UPDATE IS : {}", afterUpdateversion);
+		var singerDelete = singerDao.findById(4l);
+		singerDao.delete(singerDelete);
 		context.close();
 
 	}

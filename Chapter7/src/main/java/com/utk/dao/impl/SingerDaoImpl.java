@@ -47,8 +47,8 @@ public class SingerDaoImpl implements SingerDao {
 
 	@Override
 	public void delete(Singer singer) {
-		// TODO Auto-generated method stub
-
+		sessionFactory.getCurrentSession().delete(singer);
+		logger.info("Singer deleted with id" + singer.getId());
 	}
 
 }

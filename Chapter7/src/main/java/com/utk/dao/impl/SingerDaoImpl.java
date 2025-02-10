@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.utk.dao.SingerDao;
 import com.utk.entity.Singer;
 
-@org.springframework.transaction.annotation.Transactional(readOnly = true)
+@org.springframework.transaction.annotation.Transactional
 @Repository("singerDao")
 public class SingerDaoImpl implements SingerDao {
 
@@ -40,8 +40,9 @@ public class SingerDaoImpl implements SingerDao {
 
 	@Override
 	public Singer save(Singer singer) {
-		// TODO Auto-generated method stub
-		return null;
+		sessionFactory.getCurrentSession().saveOrUpdate(singer);
+		logger.info("Singer saved with message id : {}", singer.getId());
+		return singer;
 	}
 
 	@Override

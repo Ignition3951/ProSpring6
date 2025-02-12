@@ -41,12 +41,23 @@ public class SingerServiceImpl implements SingerService {
 	@org.springframework.transaction.annotation.Transactional(readOnly = true)
 	@Override
 	public Optional<Singer> findById(Long id) {
-		throw new NotYetImplementedException("findById");
+		Singer singleResult = (Singer) entityManager.createNamedQuery("Singer.findById").setParameter("id", id)
+				.getSingleResult();
+		return Optional.ofNullable(singleResult);
 	}
 
 	@Override
 	public Optional<Singer> save(Singer singer) {
-		throw new NotYetImplementedException("save");
+		if (singer.getId() == null) {
+			logger.info("Inserting new singer by using persist!!");
+			entityManager.persist(singer);
+			return Optional.of(singer);
+		} else {
+			entityManager.merge(singer);
+			logger.info("Updating the singer record already present with id : {}", singer.getId());
+			return Optional.of(singer);
+		}
+
 	}
 
 	@Override

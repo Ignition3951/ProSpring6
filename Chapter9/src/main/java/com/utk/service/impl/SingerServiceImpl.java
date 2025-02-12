@@ -3,7 +3,6 @@ package com.utk.service.impl;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-import org.hibernate.cfg.NotYetImplementedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
@@ -11,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 
 import com.utk.entity.Singer;
+import com.utk.exception.TitleTooLongException;
 import com.utk.service.SingerService;
 
 import jakarta.persistence.EntityManager;
@@ -68,8 +68,15 @@ public class SingerServiceImpl implements SingerService {
 	}
 
 	@Override
-	public Stream<Singer> findAllWithNativeQuery() {
-		throw new NotYetImplementedException("findAllWithNativeQuery");
+	public Stream<Singer> findAllWithNativeQuery() throws TitleTooLongException {
+		throw new TitleTooLongException("Dummy exception which is not runtime!!!");
+	}
+
+	@Override
+	@org.springframework.transaction.annotation.Transactional(rollbackFor = TitleTooLongException.class)
+	public void saveSingerWithAlbums(Singer singer) throws TitleTooLongException {
+		save(singer);
+		findAllWithNativeQuery();
 	}
 
 }

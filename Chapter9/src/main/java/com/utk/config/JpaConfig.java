@@ -47,6 +47,7 @@ public class JpaConfig {
 		properties.put(Environment.FORMAT_SQL, false);
 		properties.put(Environment.USE_SQL_COMMENTS, false);
 		properties.put(Environment.SHOW_SQL, false);
+		properties.put("BATCH_SIZE", 30);
 		return properties;
 	}
 

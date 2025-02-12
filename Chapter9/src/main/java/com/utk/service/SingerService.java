@@ -4,6 +4,7 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 import com.utk.entity.Singer;
+import com.utk.exception.TitleTooLongException;
 
 public interface SingerService {
 
@@ -19,6 +20,8 @@ public interface SingerService {
 
 	void delete(Singer singer);
 
-	Stream<Singer> findAllWithNativeQuery();
+	Stream<Singer> findAllWithNativeQuery() throws TitleTooLongException;
+
+	void saveSingerWithAlbums(Singer singer) throws TitleTooLongException;
 
 }

@@ -5,6 +5,7 @@ import java.util.stream.Stream;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -26,6 +27,9 @@ public class SingerServiceImpl implements SingerService {
 
 	@PersistenceContext
 	private EntityManager entityManager;
+
+	@Value("#{properties.get('BATCH_SIZE')}")
+	private int batchSize;
 
 	@org.springframework.transaction.annotation.Transactional(readOnly = true)
 	@Override
@@ -69,6 +73,7 @@ public class SingerServiceImpl implements SingerService {
 
 	@Override
 	public Stream<Singer> findAllWithNativeQuery() throws TitleTooLongException {
+		logger.info("Inside findAllWithNativeQuery, the value of BATCH_SIZE is : {}", batchSize);
 		throw new TitleTooLongException("Dummy exception which is not runtime!!!");
 	}
 

@@ -2,7 +2,6 @@ package com.utk;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,8 +33,8 @@ public class TransactionDemo {
 			List<Singer> singers = singerService.findAll().toList();
 			List<Singer> singersWithAlbums = singerService.findAllWithAlbum().toList();
 			logger.info("SIZE OF SINGER IS : {}", singers.size());
-			Optional<Singer> singeroptional = singerService.findById(11l);
-			singerService.delete(singeroptional.get());
+//			Optional<Singer> singeroptional = singerService.findById(11l);
+//			singerService.delete(singeroptional.get());
 			var singer = new Singer();
 			singer.setFistName("BB");
 			singer.setLastName("King");

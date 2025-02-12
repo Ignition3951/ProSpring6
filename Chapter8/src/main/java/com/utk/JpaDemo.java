@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.utk.config.JpaConfig;
-import com.utk.entity.Album;
 import com.utk.entity.Singer;
 import com.utk.service.SingerService;
 
@@ -34,13 +33,15 @@ public class JpaDemo {
 //		album.setReleaseDate(LocalDate.of(1962, 3, 20));
 //		singer.addAlbum(album);
 //		singerService.save(singer);
+//		Optional<Singer> singer = singerService.findById(9l);
+//		Album album = singer.get().getAlbums().stream().filter(s -> "My Kind of Blues".equals(s.getTitle())).findAny()
+//				.orElse(null);
+//		singer.get().setFistName("Eunice Kathleen");
+//		singer.get().setLastName("Waymon");
+//		singer.get().removeALbum(album);
+//		singerService.save(singer.get());
 		Optional<Singer> singer = singerService.findById(9l);
-		Album album = singer.get().getAlbums().stream().filter(s -> "My Kind of Blues".equals(s.getTitle())).findAny()
-				.orElse(null);
-		singer.get().setFistName("Eunice Kathleen");
-		singer.get().setLastName("Waymon");
-		singer.get().removeALbum(album);
-		singerService.save(singer.get());
+		singerService.delete(singer.get());
 		context.close();
 
 	}

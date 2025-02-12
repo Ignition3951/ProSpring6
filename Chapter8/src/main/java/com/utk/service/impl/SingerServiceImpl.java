@@ -62,7 +62,8 @@ public class SingerServiceImpl implements SingerService {
 
 	@Override
 	public void delete(Singer singer) {
-		throw new NotYetImplementedException("delete");
+		Singer managedSingerInstance = entityManager.merge(singer);
+		entityManager.remove(managedSingerInstance);
 	}
 
 	@Override

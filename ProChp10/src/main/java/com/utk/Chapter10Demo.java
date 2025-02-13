@@ -30,6 +30,8 @@ public class Chapter10Demo {
 			SingerService singerService = context.getBean(SingerService.class);
 			List<Singer> singers = singerService.findAll().toList();
 			singers.forEach(singer -> logger.info("Singer is : {}", singer));
+			Singer updatedSinger = singerService.updateFirstName("JohnUpdated", 1l);
+			logger.info("Updated Singer is : {}", updatedSinger);
 			context.close();
 		};
 	}

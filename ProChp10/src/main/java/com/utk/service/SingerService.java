@@ -11,4 +11,6 @@ public interface SingerService {
 	Stream<Singer> findByFirstName(String firstName);
 
 	Stream<Singer> findByFirstNameAndLastName(String firstName, String lastName);
+
+	Singer updateFirstName(String firstName, Long id);
 }

@@ -6,6 +6,8 @@ import java.util.stream.StreamSupport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.utk.entity.Singer;
 import com.utk.repo.SingerRepository;
@@ -36,6 +38,16 @@ public class SingerServiceImpl implements SingerService {
 	public Stream<Singer> findByFirstNameAndLastName(String firstName, String lastName) {
 		return StreamSupport.stream(singerRepository.findByFistNameAndLastName(firstName, lastName).spliterator(),
 				false);
+	}
+
+	@Transactional(propagation = Propagation.REQUIRES_NEW, label = "modifying")
+	@Override
+	public Singer updateFirstName(String firstName, Long id) {
+//		singerRepository.setFirstNameFor(firstName, id);
+		singerRepository.findById(id).ifPresent(s -> {
+			singerRepository.setFirstNameFor(firstName, id);
+		});
+		return singerRepository.findById(id).orElse(null);
 	}
 
 }

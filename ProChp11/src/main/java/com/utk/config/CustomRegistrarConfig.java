@@ -5,11 +5,13 @@ import java.time.LocalDate;
 import org.springframework.beans.PropertyEditorRegistrar;
 import org.springframework.beans.factory.config.CustomEditorConfigurer;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 import com.utk.util.LocalDatePropertyEditor;
 
 @Configuration
+@ComponentScan(basePackages = { "com.utk.validator" })
 public class CustomRegistrarConfig {
 
 	@Bean

@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 import com.utk.util.BubbleSort;
 import com.utk.util.InsertionSort;
+import com.utk.util.MergeSort;
 import com.utk.util.ThreadPoolMonitor;
 
 public class ClassicDemo {
@@ -17,10 +18,11 @@ public class ClassicDemo {
 //		int[] checkarr = { 23, 1, 10, 5, 2 };
 		ThreadPoolMonitor algorithmMonitor = new ThreadPoolMonitor();
 		Thread algoThread = new Thread(algorithmMonitor);
-		ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(2, 4, 0l, TimeUnit.MILLISECONDS,
+		ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(3, 4, 0l, TimeUnit.MILLISECONDS,
 				new LinkedBlockingQueue<>());
 		algorithmMonitor.setExecutor(threadPoolExecutor);
-		List.of(new BubbleSort(arr), new InsertionSort(arr)).forEach(threadPoolExecutor::execute);
+		List.of(new BubbleSort(arr), new InsertionSort(arr), new MergeSort(arr))
+				.forEach(threadPoolExecutor::execute);
 		algoThread.start();
 		threadPoolExecutor.shutdown();
 		try {

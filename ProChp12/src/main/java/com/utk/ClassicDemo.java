@@ -9,6 +9,7 @@ import java.util.concurrent.TimeUnit;
 import com.utk.util.BubbleSort;
 import com.utk.util.InsertionSort;
 import com.utk.util.MergeSort;
+import com.utk.util.QuickSort;
 import com.utk.util.ThreadPoolMonitor;
 
 public class ClassicDemo {
@@ -21,7 +22,7 @@ public class ClassicDemo {
 		ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(3, 4, 0l, TimeUnit.MILLISECONDS,
 				new LinkedBlockingQueue<>());
 		algorithmMonitor.setExecutor(threadPoolExecutor);
-		List.of(new BubbleSort(arr), new InsertionSort(arr), new MergeSort(arr))
+		List.of(new BubbleSort(arr), new InsertionSort(arr), new MergeSort(arr), new QuickSort(arr))
 				.forEach(threadPoolExecutor::execute);
 		algoThread.start();
 		threadPoolExecutor.shutdown();

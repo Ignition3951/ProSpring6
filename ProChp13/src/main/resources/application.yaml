@@ -1,0 +1,42 @@
+# Spring Boot application name
+spring:
+ application:
+  name: chapter13-sender-app
+# datasource config
+ datasource:
+  url: "jdbc:mysql://localhost:3306/chapter13?serverTimezone=UTC"
+  driverClassName: "com.mysql.cj.jdbc.Driver"
+  username: root
+  password: root
+# jpa config
+ jpa:
+  database-platform: "org.hibernate.dialect.MySQL5Dialect"
+  hibernate:
+   ddl-auto: create
+ # Uppercase Table Names
+   naming:
+    physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+# enabling the H2 web console
+# h2:
+# console:
+# enabled: true
+# application config
+app:
+ sender:
+  name: "default"
+ correspondent:
+  address: "http://localhost:8090"
+# server config
+server:
+ port: 8090
+ compression:
+  enabled: true
+ address: 0.0.0.0
+ # Logging config
+logging:
+ pattern:
+  console: "%-5level: %class{0} - %msg%n"
+ level:
+  root: INFO
+  org.springframework: DEBUG
+  com.utk: INFO

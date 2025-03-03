@@ -1,5 +1,7 @@
 # Spring Boot application name
 spring:
+ artemis:
+  queue: prospring6
  application:
   name: chapter13-sender-app
 # datasource config

@@ -38,4 +38,12 @@ public class Letter implements Serializable {
 	@NotEmpty
 	private String content;
 
+	public Letter(@NotEmpty String title, String sender, LocalDate sentOn, @NotEmpty String content) {
+		this.title = title;
+		this.sender = sender;
+		this.sentOn = sentOn;
+		this.content = content;
+	}
+
+
 }

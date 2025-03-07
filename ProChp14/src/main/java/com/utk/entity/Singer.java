@@ -1,6 +1,5 @@
 package com.utk.entity;
 
-import java.io.Serial;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
@@ -28,7 +27,6 @@ public class Singer extends AbstractEntity {
 	/**
 	 * 
 	 */
-	@Serial
 	private static final long serialVersionUID = 2L;
 
 	private String fistName;

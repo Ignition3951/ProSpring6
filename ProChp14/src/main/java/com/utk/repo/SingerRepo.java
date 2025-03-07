@@ -13,13 +13,13 @@ public interface SingerRepo extends JpaRepository<Singer, Long> {
 	@Query("select s from Singer s where s.fistName=:fn")
 	Iterable<Singer> findByFirstName(@Param("fn") String firstName);
 
-	@Query("select s from Singer s where s.fistName %?1%")
+	@Query("select s from Singer s where s.fistName like %?1%")
 	Iterable<Singer> findByFirstNameLike(String fistName);
 
 	@Query("select s from Singer s where s.lastName=:lastName")
 	Iterable<Singer> findByLastName(@Param("lastName") String lastName);
 
-	@Query("select s from Singer s where s.lastName %?1%")
+	@Query("select s from Singer s where s.lastName like %?1%")
 	Iterable<Singer> findByLastNameLike(String lastName);
 
 	@Query("select s from Singer s where s.birthDate=:date")

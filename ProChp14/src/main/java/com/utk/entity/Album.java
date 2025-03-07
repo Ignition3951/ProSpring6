@@ -1,6 +1,5 @@
 package com.utk.entity;
 
-import java.io.Serial;
 import java.time.LocalDate;
 
 import jakarta.persistence.Column;
@@ -16,7 +15,6 @@ public class Album extends AbstractEntity {
 	/**
 	 * 
 	 */
-	@Serial
 	private static final long serialVersionUID = 3L;
 
 	private String title;

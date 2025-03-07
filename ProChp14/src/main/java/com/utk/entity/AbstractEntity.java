@@ -1,6 +1,5 @@
 package com.utk.entity;
 
-import java.io.Serial;
 import java.io.Serializable;
 
 import jakarta.persistence.Column;
@@ -16,7 +15,6 @@ public class AbstractEntity implements Serializable {
 	/**
 	 * 
 	 */
-	@Serial
 	private static final long serialVersionUID = 1L;
 
 	private Long id;

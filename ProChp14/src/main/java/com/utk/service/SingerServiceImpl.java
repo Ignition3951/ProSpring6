@@ -27,8 +27,7 @@ public class SingerServiceImpl implements SingerService{
 
 	@Override
 	public Singer findById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return repo.findById(id).orElse(null);
 	}
 
 	@Override

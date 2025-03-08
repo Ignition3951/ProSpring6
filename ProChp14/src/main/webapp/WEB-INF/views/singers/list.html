@@ -38,7 +38,7 @@ Date: 2022-12-26
                 <tbody>
                     <tr th:each="singer : ${singers}" >
                       <td><a th:href="@{/singer/} + ${singer.id}" th:text="${singer.id}">ID</a></td>
-                      <td th:text="${singer.firstName}">...</td>
+                      <td th:text="${singer.fistName}">...</td>
                       <td th:text="${singer.lastName}">...</td>
                     </tr>
                 </tbody>

@@ -1,18 +1,24 @@
 package com.utk.controller;
 
+import java.util.Locale;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.utk.entity.Singer;
 import com.utk.service.SingerService;
+
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/singer/{id}")
@@ -51,6 +57,30 @@ public class OneSingerController {
 	public String deleteSinger(@PathVariable("id") Long id) {
 		singerService.delete(id);
 		return "redirect:/singers";
+	}
+
+	@GetMapping("/edit")
+	public String showEditForm(@PathVariable("id") Long id, Model model) {
+		Singer singer = singerService.findById(id);
+		model.addAttribute("singer", singer);
+		return "singers/edit";
+	}
+
+	@PutMapping
+	public String updateSingerInfo(@Valid Singer singer, Model model, BindingResult bindingResult, Locale locale) {
+		if (bindingResult.hasErrors()) {
+			model.addAttribute("message", messageSource.getMessage("singer.save.fail", new Object[] {}, locale));
+			model.addAttribute("singer", singer);
+			return "singers/edit";
+		} else {
+			model.asMap().clear();
+			Singer singerFromDB = singerService.findById(singer.getId());
+			singerFromDB.setFistName(singer.getFistName());
+			singerFromDB.setLastName(singer.getLastName());
+			singerFromDB.setBirthDate(singer.getBirthDate());
+			singerService.save(singerFromDB);
+			return "redirect:/singer/" + singer.getId();
+		}
 	}
 
 }

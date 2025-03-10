@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,6 +45,12 @@ public class OneSingerController {
 			return singer.getPhoto();
 		}
 		return null;
+	}
+
+	@DeleteMapping
+	public String deleteSinger(@PathVariable("id") Long id) {
+		singerService.delete(id);
+		return "redirect:/singers";
 	}
 
 }

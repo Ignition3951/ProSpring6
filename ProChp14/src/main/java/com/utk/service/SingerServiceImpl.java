@@ -38,8 +38,7 @@ public class SingerServiceImpl implements SingerService{
 
 	@Override
 	public void delete(Long id) {
-		// TODO Auto-generated method stub
-
+		repo.deleteById(id);
 	}
 
 	@Override

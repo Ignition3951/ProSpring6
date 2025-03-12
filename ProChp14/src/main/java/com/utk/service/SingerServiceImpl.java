@@ -32,8 +32,7 @@ public class SingerServiceImpl implements SingerService{
 
 	@Override
 	public Singer save(Singer singer) {
-		// TODO Auto-generated method stub
-		return null;
+		return repo.save(singer);
 	}
 
 	@Override

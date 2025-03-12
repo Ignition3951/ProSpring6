@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Description;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.ui.context.support.ResourceBundleThemeSource;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.ViewResolver;
@@ -86,17 +87,17 @@ public class WebConfig  implements WebMvcConfigurer, ApplicationContextAware {
         return new ResourceBundleThemeSource();
     }
 
-//    @Bean
-//    public Validator validator() {
-//        final var validator = new LocalValidatorFactoryBean();
-//        validator.setValidationMessageSource(messageSource());
-//        return validator;
-//    }
-//
-//    @Override
-//    public Validator getValidator() {
-//        return validator();
-//    }
+	@Bean
+	public org.springframework.validation.Validator validator() {
+		final var validator = new LocalValidatorFactoryBean();
+		validator.setValidationMessageSource(messageSource());
+		return validator;
+	}
+
+	@Override
+	public org.springframework.validation.Validator getValidator() {
+		return validator();
+	}
 
     //Declare our static resources. I added cache to the java config but it?s not required.
     @Override

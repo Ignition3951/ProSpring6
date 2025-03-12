@@ -5,17 +5,17 @@ import java.time.LocalDate;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
 public class SingerForm {
 
-	@NotNull
-	@Size(min = 2, max = 30)
+	@NotEmpty(message = "{NotEmpty.singer.firstName}")
+	@Size(min = 2, max = 30, message = "{Size.singer.firstName}")
 	private String firstName;
 
-	@NotNull
-	@Size(min = 2, max = 30)
+	@NotEmpty(message = "{NotEmpty.singer.lastName}")
+	@Size(min = 2, max = 30, message = "{Size.singer.lastName}")
 	private String lastName;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")

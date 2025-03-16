@@ -53,7 +53,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableJpaRepositories(basePackages = { "com.utk.repo" })
 @EnableTransactionManagement
-@ComponentScan(basePackages = { "com.utk.repo", "com.utk.service" })
+@ComponentScan(basePackages = { "com.utk.repo", "com.utk.service", "com.utk.exception" })
 public class TransactionCfg {
 
     @Autowired

@@ -27,7 +27,7 @@ public class SingerServiceImpl implements SingerService{
 
 	@Override
 	public Singer findById(Long id) {
-		return repo.findById(id).orElse(null);
+		return repo.findById(id).orElseThrow(() -> new com.utk.exception.NotFoundException(Singer.class, id));
 	}
 
 	@Override

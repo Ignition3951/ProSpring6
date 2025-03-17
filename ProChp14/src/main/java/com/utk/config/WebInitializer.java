@@ -43,9 +43,16 @@ import jakarta.servlet.ServletRegistration;
  */
 public class WebInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
+	private static final long MAX_FILE_SIZE = 5000000;
+	// Beyond that size spring will throw exception.
+	private static final long MAX_REQUEST_SIZE = 5000000;
+
+	// Size threshold after which files will be written to disk
+	private static final int FILE_SIZE_THRESHOLD = 1;
+
     @Override
     protected Class<?>[] getRootConfigClasses() {
-		return new Class[] { BasicDataSourceCfg.class, TransactionCfg.class };
+		return new Class[] { };
     }
 
     @Override
@@ -74,14 +81,6 @@ public class WebInitializer extends AbstractAnnotationConfigDispatcherServletIni
     }
 
     private MultipartConfigElement getMultipartConfigElement() {
-        return  new MultipartConfigElement(null, MAX_FILE_SIZE, MAX_REQUEST_SIZE, FILE_SIZE_THRESHOLD);
+    	return new MultipartConfigElement(null, MAX_FILE_SIZE, MAX_REQUEST_SIZE, FILE_SIZE_THRESHOLD);
     }
-
-    private static final long MAX_FILE_SIZE = 5000000;
-    // Beyond that size spring will throw exception.
-    private static final long MAX_REQUEST_SIZE = 5000000;
-
-    // Size threshold after which files will be written to disk
-    private static final int FILE_SIZE_THRESHOLD = 0;
 }
-

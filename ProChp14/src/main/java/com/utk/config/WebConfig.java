@@ -103,8 +103,11 @@ public class WebConfig  implements WebMvcConfigurer, ApplicationContextAware {
     @Override
     public void addResourceHandlers(final ResourceHandlerRegistry registry) {
         WebMvcConfigurer.super.addResourceHandlers(registry);
-        registry.addResourceHandler("/images/**", "/styles/**")
-                .addResourceLocations("/images/", "/styles/");
+		/*
+		 * registry.addResourceHandler("/images/**", "/styles/**")
+		 * .addResourceLocations("/images/", "/styles/");
+		 */
+		registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
     }
 
     /*@Override
@@ -150,23 +153,23 @@ public class WebConfig  implements WebMvcConfigurer, ApplicationContextAware {
         return themeChangeInterceptor;
     }
 
-    @Bean
-    CookieLocaleResolver localeResolver() {
-        var cookieLocaleResolver = new CookieLocaleResolver();
-        cookieLocaleResolver.setDefaultLocale(Locale.ENGLISH);
-        cookieLocaleResolver.setCookieMaxAge(3600);
-        cookieLocaleResolver.setCookieName("locale");
-        return cookieLocaleResolver;
-    }
+	@Bean
+	CookieLocaleResolver localeResolver() {
+		var cookieLocaleResolver = new CookieLocaleResolver();
+		cookieLocaleResolver.setDefaultLocale(Locale.ENGLISH);
+		cookieLocaleResolver.setCookieMaxAge(3600);
+		cookieLocaleResolver.setCookieName("locale");
+		return cookieLocaleResolver;
+	}
 
-    @Bean
-    CookieThemeResolver themeResolver() {
-        var cookieThemeResolver = new CookieThemeResolver();
-        cookieThemeResolver.setDefaultThemeName("green");
-        cookieThemeResolver.setCookieMaxAge(3600);
-        cookieThemeResolver.setCookieName("theme");
-        return cookieThemeResolver;
-    }
+	@Bean
+	CookieThemeResolver themeResolver() {
+		var cookieThemeResolver = new CookieThemeResolver();
+		cookieThemeResolver.setDefaultThemeName("green");
+		cookieThemeResolver.setCookieMaxAge(3600);
+		cookieThemeResolver.setCookieName("theme");
+		return cookieThemeResolver;
+	}
 
     @Bean
     WebContentInterceptor webChangeInterceptor() {

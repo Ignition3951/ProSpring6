@@ -46,7 +46,8 @@
             </table>
             <div class="container col-lg-12">
               <form th:object="${singer}" th:action="@{/singer/} + ${singer.id}" th:method="delete"  class="col p-3">
-                <input sec:authorize="hasRole('ADMIN')" type="submit" th:value="#{command.delete}" id="deleteButton" class="btn btn-danger"/>
+             <!-- sec:authorize="hasRole('ADMIN')" commented out to check @PreAuthorize in controller-->
+                <input type="submit" th:value="#{command.delete}" id="deleteButton" class="btn btn-danger"/>
               </form>
             </div>
           </div>

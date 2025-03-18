@@ -1,6 +1,7 @@
 package com.utk.exception;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.security.authorization.AuthorizationDeniedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -26,6 +27,15 @@ public class GlobalExceptionHandler {
 	public ModelAndView noHandler(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("problem", "Not supported : " + request.getRequestURI());
+		modelAndView.setViewName("error");
+		return modelAndView;
+	}
+
+	@ExceptionHandler(exception = AuthorizationDeniedException.class)
+	@ResponseStatus(code = HttpStatus.FORBIDDEN)
+	public ModelAndView forbidden(HttpServletRequest request) {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("problem", "You are not authorized for this operation" + request.getRequestURI());
 		modelAndView.setViewName("error");
 		return modelAndView;
 	}

@@ -29,6 +29,7 @@ import org.springframework.web.servlet.mvc.WebContentInterceptor;
 import org.springframework.web.servlet.theme.CookieThemeResolver;
 import org.springframework.web.servlet.theme.ThemeChangeInterceptor;
 import org.thymeleaf.extras.java8time.dialect.Java8TimeDialect;
+import org.thymeleaf.extras.springsecurity6.dialect.SpringSecurityDialect;
 import org.thymeleaf.spring6.SpringTemplateEngine;
 import org.thymeleaf.spring6.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring6.view.ThymeleafViewResolver;
@@ -69,6 +70,7 @@ public class WebConfig  implements WebMvcConfigurer, ApplicationContextAware {
         engine.addDialect(new Java8TimeDialect());
         engine.setTemplateResolver(templateResolver());
         engine.setTemplateEngineMessageSource(messageSource());
+		engine.addDialect(new SpringSecurityDialect());
         engine.setEnableSpringELCompiler(true);
         return engine;
     }
@@ -115,6 +117,7 @@ public class WebConfig  implements WebMvcConfigurer, ApplicationContextAware {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addRedirectViewController("/", "/home");
+		registry.addViewController("/auth").setViewName("auth");
     }
 
     @Override

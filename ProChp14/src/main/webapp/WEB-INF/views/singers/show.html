@@ -1,9 +1,3 @@
-<!--
-Created by IntelliJ IDEA.
-User: iulianacosmina
-Date: 2019-07-14
-Time: 11:43
--->
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 
@@ -52,7 +46,7 @@ Time: 11:43
             </table>
             <div class="container col-lg-12">
               <form th:object="${singer}" th:action="@{/singer/} + ${singer.id}" th:method="delete"  class="col p-3">
-                <input type="submit" th:value="#{command.delete}" id="deleteButton" class="btn btn-danger"/>
+                <input sec:authorize="hasRole('ADMIN')" type="submit" th:value="#{command.delete}" id="deleteButton" class="btn btn-danger"/>
               </form>
             </div>
           </div>

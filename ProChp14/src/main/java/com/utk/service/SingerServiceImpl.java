@@ -46,4 +46,9 @@ public class SingerServiceImpl implements SingerService{
 		return null;
 	}
 
+	@Override
+	public List<Singer> findByFistNameAndLastName(String firstName, String lastName) {
+		return repo.findByFistNameAndLastName(firstName, lastName);
+	}
+
 }

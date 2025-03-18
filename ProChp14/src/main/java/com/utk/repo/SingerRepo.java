@@ -1,6 +1,7 @@
 package com.utk.repo;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -24,4 +25,6 @@ public interface SingerRepo extends JpaRepository<Singer, Long> {
 
 	@Query("select s from Singer s where s.birthDate=:date")
 	Iterable<Singer> findByBirthDate(@Param("date") LocalDate date);
+
+	List<Singer> findByFistNameAndLastName(String fistName, String lastName);
 }

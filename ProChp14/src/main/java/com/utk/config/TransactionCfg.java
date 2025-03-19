@@ -90,6 +90,11 @@ public class TransactionCfg {
         jpaProps.put(Environment.STATEMENT_BATCH_SIZE, 30);
         jpaProps.put(Environment.USE_SQL_COMMENTS, false);
         jpaProps.put(Environment.SHOW_SQL, false);
+		jpaProps.put(Environment.GENERATE_STATISTICS, true);
+		jpaProps.put("hibernate.jmx.enabled", true);
+		jpaProps.put("hibernate.jmx.usePlatformServer", true);
+		jpaProps.put(Environment.SESSION_FACTORY_NAME, "sessionFactory");
+		jpaProps.put("spring.jpa.properties.hibernate.generate_statistics", true);
         return jpaProps;
     }
 }

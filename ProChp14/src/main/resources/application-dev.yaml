@@ -8,6 +8,9 @@ server:
  address: 0.0.0.0
  # application configuration
 spring:
+  jmx:
+   enabled: true
+   default-domain: jmxBootDemo
   main:
    allow-bean-definition-overriding: true
   datasource:

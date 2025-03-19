@@ -24,4 +24,7 @@ public interface SingerRepo extends JpaRepository<Singer, Long> {
 
 	@Query("select s from Singer s where s.birthDate=:date")
 	Iterable<Singer> findByBirthDate(@Param("date") LocalDate date);
+
+	@Query("select s from Singer s where s.fistName=:fn and s.lastName=:lastname")
+	Iterable<Singer> findByFirstNameAndLastName(@Param("fn") String firstName, @Param("lastname") String lastName);
 }

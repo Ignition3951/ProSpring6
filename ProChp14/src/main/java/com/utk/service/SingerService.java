@@ -19,4 +19,6 @@ public interface SingerService {
 
 	Page<Singer> findAllByPage(Pageable pageable);
 
+	List<Singer> findByFirstNameAndLastName(String string, String string2);
+
 }

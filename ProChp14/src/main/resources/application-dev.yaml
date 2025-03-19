@@ -62,3 +62,15 @@ logging:
   root: INFO
   org.springframework.boot: DEBUG
   com.utk: INFO
+management:
+  server:
+    port: 9091
+  endpoints:
+   web:
+      exposure:
+        include: "*"
+      base-path: /monitoring
+   jmx:
+    domain: jmxBootDemo
+    exposure:
+     include: "*"

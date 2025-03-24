@@ -106,6 +106,21 @@
 			<artifactId>thymeleaf-extras-springsecurity6</artifactId>
 		</dependency>
 
+		<!--
+		https://mvnrepository.com/artifact/org.springframework/spring-websocket -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-websocket</artifactId>
+		</dependency>
+
+		<!--
+		https://mvnrepository.com/artifact/jakarta.websocket/jakarta.websocket-api -->
+		<dependency>
+			<groupId>jakarta.websocket</groupId>
+			<artifactId>jakarta.websocket-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
 
 	</dependencies>
 	<build>

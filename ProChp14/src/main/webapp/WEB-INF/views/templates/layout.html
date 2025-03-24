@@ -59,6 +59,27 @@
 				</span> <span th:unless="${menuTab eq 'singers'}"> <a
 						th:href="@{/singers}" th:text="#{menu.singers}">SINGERS</a>
 				</span></li>
+				 <li><span th:if="${menuTab eq 'index'}">
+                            <strong><a th:href="@{/index}" th:text="#{menu.index}">WebSocket</a></strong>
+                        </span>
+                        <span th:unless="${menuTab eq 'index'}">
+                            <a th:href="@{/index}" th:text="#{menu.index}">WebSocket</a>
+                        </span>
+                    </li>
+                    <li><span th:if="${menuTab eq 'index2'}">
+                            <strong><a th:href="@{/index2}" th:text="#{menu.index2}">SockJs</a></strong>
+                        </span>
+                        <span th:unless="${menuTab eq 'index2'}">
+                            <a th:href="@{/index2}" th:text="#{menu.index2}">SockJs</a>
+                        </span>
+                    </li>
+                    <li><span th:if="${menuTab eq 'index3'}">
+                            <strong><a th:href="@{/index3}" th:text="#{menu.index3}">STOMP</a></strong>
+                        </span>
+                        <span th:unless="${menuTab eq 'index3'}">
+                            <a th:href="@{/index3}" th:text="#{menu.index3}">STOMP</a>
+                        </span>
+                    </li>
 				<li sec:authorize="isAuthenticated()"><a th:href="@{/exit}"
 					th:text="#{command.logout}">Sign Out</a></li>
 			</ul>

@@ -16,4 +16,20 @@ public class IndexController {
 		model.addAttribute("webSocket", webSocketAddress);
 		return "index";
 	}
+
+	@GetMapping(path = "index2")
+	public String index2(Model model, HttpServletRequest request) {
+		var requestUrl = request.getRequestURL().toString();
+		var webSocketAddress = requestUrl.replace("index2", "sockjs/echoHandler");
+		model.addAttribute("webSocket", webSocketAddress);
+		return "index2";
+	}
+
+	@GetMapping(path = "index3")
+	public String index3(Model model, HttpServletRequest request) {
+		var requestUrl = request.getRequestURL().toString();
+		var endpointAddress = requestUrl.replace("index3", "ws");
+		model.addAttribute("endpoint", endpointAddress);
+		return "index3";
+	}
 }

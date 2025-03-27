@@ -36,4 +36,11 @@ public class SimpleProgrammingTest {
 		}
 		assertEquals(306, ageSum);
 	}
+
+	@Test
+	void streamsPlay() {
+		int ageSum = singers.stream().map(computeAge).filter(checkAge).map(Pair::getRight).reduce(Integer::sum)
+				.orElseThrow(() -> new RuntimeException("Something went terribly wrong!!!"));
+		assertEquals(306, ageSum);
+	}
 }

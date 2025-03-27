@@ -13,6 +13,9 @@ import org.junit.jupiter.api.Test;
 
 import com.utk.entity.Singer;
 
+import reactor.core.publisher.BaseSubscriber;
+import reactor.core.publisher.Flux;
+
 public class SimpleProgrammingTest {
 
 	List<Singer> singers = List.of(
@@ -42,5 +45,16 @@ public class SimpleProgrammingTest {
 		int ageSum = singers.stream().map(computeAge).filter(checkAge).map(Pair::getRight).reduce(Integer::sum)
 				.orElseThrow(() -> new RuntimeException("Something went terribly wrong!!!"));
 		assertEquals(306, ageSum);
+	}
+
+	@Test
+	void reactivePlay() {
+		Flux.fromIterable(singers).map(computeAge).filter(checkAge).map(Pair::getRight).reduce(0, Integer::sum)
+				.subscribe(new BaseSubscriber<>() {
+					@Override
+					protected void hookOnNext(Integer ageSum) {
+						assertEquals(306, ageSum);
+					}
+				});
 	}
 }

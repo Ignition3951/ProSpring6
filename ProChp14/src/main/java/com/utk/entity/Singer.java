@@ -36,6 +36,15 @@ public class Singer extends AbstractEntity {
 	private Set<Instrument> instruments = new HashSet<>();
 	private byte[] photo;
 
+	public Singer() {
+	}
+
+	Singer(Builder builder) {
+		this.fistName = builder.fistName;
+		this.lastName = builder.lastName;
+		this.birthDate = builder.birthDate;
+	}
+
 	@Basic(fetch = FetchType.LAZY)
 	@Lob
 	@Column(name = "PHOTO")
@@ -117,5 +126,31 @@ public class Singer extends AbstractEntity {
 //	public String toString() {
 //		return "Singer [fistName=" + fistName + ", lastName=" + lastName + ", birthDate=" + birthDate + "]";
 //	}
+
+	public static class Builder {
+
+		private String fistName;
+		private String lastName;
+		private LocalDate birthDate;
+
+		public Builder fistName(String firstName) {
+			this.fistName = firstName;
+			return this;
+		}
+
+		public Builder lastName(String lastName) {
+			this.lastName = lastName;
+			return this;
+		}
+
+		public Builder birthDate(LocalDate birthDate) {
+			this.birthDate = birthDate;
+			return this;
+		}
+
+		public Singer build() {
+			return new Singer(this);
+		}
+	}
 
 }
